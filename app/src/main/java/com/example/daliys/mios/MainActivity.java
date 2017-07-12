@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -42,7 +43,11 @@ public class MainActivity extends Activity  {
             button43,button44,button45,button50,button51,
             button52,button53,button54,button55,button56,button57;
 
-
+    ImageView main_body1,main_body2;
+    ImageView image221,image222,image223,image224,image225,image226,image227,image228,image229,
+            image230,image231,image232,image233,image234,image235,image236;
+    ImageView image101,image102,image103,image104,image105,image106,image107,image108,image109,image110,
+            image111,image112,image113,image114,image115,image116,image117,image118,image119,image120;
 
     //----Управление квадратом------------
     Button buttonUp , buttonDown , buttonRight, buttonLeft;
@@ -78,8 +83,7 @@ public class MainActivity extends Activity  {
     int S = 0;
     int StageMode = 1;
     int ActivElectrodStage1;
-    double Alphas = 0.7;
-    double AlphasOff = 0.3;
+
     float x;
     float y;
     int ActivrButtonStage3 = 0;
@@ -93,8 +97,131 @@ public class MainActivity extends Activity  {
         SetListenerElement();
         InitializationBluetooth();
 
+        InitializationElements();
+
+    }
+    private void InitializationElements(){
+        main_body1 = (ImageView)findViewById(R.id.mainBody1);
+        main_body2 = (ImageView)findViewById(R.id.mainBody2);
+
+        image221 = (ImageView)findViewById(R.id.imageN221);
+        image222 = (ImageView)findViewById(R.id.imageN222);
+        image223 = (ImageView)findViewById(R.id.imageN223);
+        image224 = (ImageView)findViewById(R.id.imageN224);
+        image225 = (ImageView)findViewById(R.id.imageN225);
+        image226 = (ImageView)findViewById(R.id.imageN226);
+        image227 = (ImageView)findViewById(R.id.imageN227);
+        image228 = (ImageView)findViewById(R.id.imageN228);
+        image229 = (ImageView)findViewById(R.id.imageN229);
+        image230 = (ImageView)findViewById(R.id.imageN230);
+        image231 = (ImageView)findViewById(R.id.imageN231);
+        image232 = (ImageView)findViewById(R.id.imageN232);
+        image233 = (ImageView)findViewById(R.id.imageN233);
+        image234 = (ImageView)findViewById(R.id.imageN234);
+        image235 = (ImageView)findViewById(R.id.imageN235);
+        image236 = (ImageView)findViewById(R.id.imageN236);
+
+        image101 = (ImageView)findViewById(R.id.imageN101);
+        image102 = (ImageView)findViewById(R.id.imageN102);
+        image103 = (ImageView)findViewById(R.id.imageN103);
+        image104 = (ImageView)findViewById(R.id.imageN104);
+        image105 = (ImageView)findViewById(R.id.imageN105);
+        image106 = (ImageView)findViewById(R.id.imageN106);
+        image107 = (ImageView)findViewById(R.id.imageN107);
+        image108 = (ImageView)findViewById(R.id.imageN108);
+        image109 = (ImageView)findViewById(R.id.imageN109);
+        image110 = (ImageView)findViewById(R.id.imageN110);
+        image111 = (ImageView)findViewById(R.id.imageN111);
+        image112 = (ImageView)findViewById(R.id.imageN112);
+        image113 = (ImageView)findViewById(R.id.imageN113);
+        image114 = (ImageView)findViewById(R.id.imageN114);
+        image115 = (ImageView)findViewById(R.id.imageN115);
+        image116 = (ImageView)findViewById(R.id.imageN116);
+        image117 = (ImageView)findViewById(R.id.imageN117);
+        image118 = (ImageView)findViewById(R.id.imageN118);
+        image119 = (ImageView)findViewById(R.id.imageN119);
+        image120 = (ImageView)findViewById(R.id.imageN120);
 
 
+        main_body1.setImageResource(R.drawable.main_body1);
+        main_body2.setImageResource(R.drawable.main_body2);
+
+        image221.setImageResource(R.drawable.n221);
+        image222.setImageResource(R.drawable.n222);
+        image223.setImageResource(R.drawable.n223);
+        image224.setImageResource(R.drawable.n224);
+        image225.setImageResource(R.drawable.n225);
+        image226.setImageResource(R.drawable.n226);
+        image227.setImageResource(R.drawable.n227);
+        image228.setImageResource(R.drawable.n228);
+        image229.setImageResource(R.drawable.n229);
+        image230.setImageResource(R.drawable.n230);
+        image231.setImageResource(R.drawable.n231);
+        image232.setImageResource(R.drawable.n232);
+        image233.setImageResource(R.drawable.n233);
+        image234.setImageResource(R.drawable.n234);
+        image235.setImageResource(R.drawable.n235);
+        image236.setImageResource(R.drawable.n236);
+
+        image101.setImageResource(R.drawable.n101);
+        image102.setImageResource(R.drawable.n102);
+        image103.setImageResource(R.drawable.n103);
+        image104.setImageResource(R.drawable.n104);
+        image105.setImageResource(R.drawable.n105);
+        image106.setImageResource(R.drawable.n106);
+        image107.setImageResource(R.drawable.n107);
+        image108.setImageResource(R.drawable.n108);
+        image109.setImageResource(R.drawable.n109);
+        image110.setImageResource(R.drawable.n110);
+        image111.setImageResource(R.drawable.n111);
+        image112.setImageResource(R.drawable.n112);
+        image113.setImageResource(R.drawable.n113);
+        image114.setImageResource(R.drawable.n114);
+        image115.setImageResource(R.drawable.n115);
+        image116.setImageResource(R.drawable.n116);
+        image117.setImageResource(R.drawable.n117);
+        image118.setImageResource(R.drawable.n118);
+        image119.setImageResource(R.drawable.n119);
+        image120.setImageResource(R.drawable.n120);
+
+        image101.setVisibility(View.INVISIBLE);
+        image102.setVisibility(View.INVISIBLE);
+        image103.setVisibility(View.INVISIBLE);
+        image104.setVisibility(View.INVISIBLE);
+        image105.setVisibility(View.INVISIBLE);
+        image106.setVisibility(View.INVISIBLE);
+        image107.setVisibility(View.INVISIBLE);
+        image108.setVisibility(View.INVISIBLE);
+        image109.setVisibility(View.INVISIBLE);
+        image110.setVisibility(View.INVISIBLE);
+        image111.setVisibility(View.INVISIBLE);
+        image112.setVisibility(View.INVISIBLE);
+        image113.setVisibility(View.INVISIBLE);
+        image114.setVisibility(View.INVISIBLE);
+        image115.setVisibility(View.INVISIBLE);
+        image116.setVisibility(View.INVISIBLE);
+        image117.setVisibility(View.INVISIBLE);
+        image118.setVisibility(View.INVISIBLE);
+        image119.setVisibility(View.INVISIBLE);
+        image120.setVisibility(View.INVISIBLE);
+
+        main_body2.setVisibility(View.INVISIBLE);
+        image221.setVisibility(View.INVISIBLE);
+        image222.setVisibility(View.INVISIBLE);
+        image223.setVisibility(View.INVISIBLE);
+        image224.setVisibility(View.INVISIBLE);
+        image225.setVisibility(View.INVISIBLE);
+        image226.setVisibility(View.INVISIBLE);
+        image227.setVisibility(View.INVISIBLE);
+        image228.setVisibility(View.INVISIBLE);
+        image229.setVisibility(View.INVISIBLE);
+        image230.setVisibility(View.INVISIBLE);
+        image231.setVisibility(View.INVISIBLE);
+        image232.setVisibility(View.INVISIBLE);
+        image233.setVisibility(View.INVISIBLE);
+        image234.setVisibility(View.INVISIBLE);
+        image235.setVisibility(View.INVISIBLE);
+        image236.setVisibility(View.INVISIBLE);
     }
 
     private void InitializationBluetooth (){
@@ -149,7 +276,6 @@ public class MainActivity extends Activity  {
             @Override
             public void onClick(View v) {
                 SendBluetoothStage1(0,false);
-                CleanAlpha();
                 RefreshTach();
                 ActivElectrodStage1 = 0;
             }
@@ -167,7 +293,6 @@ public class MainActivity extends Activity  {
                 textViewStage3.setVisibility(View.INVISIBLE);
 
                 SetVisibleRec(true);
-                CleanAlpha();
                 SendBluetoothStage1(0,false);
                 RefreshTach();
                 ActivElectrodStage1 = 0;
@@ -181,44 +306,6 @@ public class MainActivity extends Activity  {
 
                 StageMode = 1;
 
-                budy1.setVisibility(View.VISIBLE);
-                button6.setVisibility(View.INVISIBLE);
-                button6.setVisibility(View.INVISIBLE);
-                button9.setVisibility(View.INVISIBLE);
-                button10.setVisibility(View.INVISIBLE);
-                button12.setVisibility(View.INVISIBLE);
-                button14.setVisibility(View.INVISIBLE);
-                button16.setVisibility(View.INVISIBLE);
-                button18.setVisibility(View.INVISIBLE);
-                button20.setVisibility(View.INVISIBLE);
-                button22.setVisibility(View.INVISIBLE);
-                button24.setVisibility(View.INVISIBLE);
-                button27.setVisibility(View.INVISIBLE);
-                button29.setVisibility(View.INVISIBLE);
-                button31.setVisibility(View.INVISIBLE);
-                button32.setVisibility(View.INVISIBLE);
-
-
-                budy2.setVisibility(View.INVISIBLE);
-                button4.setVisibility(View.INVISIBLE);
-                button7.setVisibility(View.VISIBLE);
-                button34.setVisibility(View.VISIBLE);
-                button35.setVisibility(View.VISIBLE);
-                button36.setVisibility(View.VISIBLE);
-                button37.setVisibility(View.VISIBLE);
-
-                button42.setVisibility(View.VISIBLE);
-                button43.setVisibility(View.VISIBLE);
-                button44.setVisibility(View.VISIBLE);
-                button45.setVisibility(View.VISIBLE);
-                button50.setVisibility(View.INVISIBLE);
-                button51.setVisibility(View.VISIBLE);
-                button52.setVisibility(View.VISIBLE);
-                button53.setVisibility(View.INVISIBLE);
-                button54.setVisibility(View.INVISIBLE);
-                button55.setVisibility(View.VISIBLE);
-                button56.setVisibility(View.VISIBLE);
-                button57.setVisibility(View.VISIBLE);
 
 
             }
@@ -236,7 +323,7 @@ public class MainActivity extends Activity  {
 
 
                 SetVisibleRec(false);
-                CleanAlpha();
+
                 SendBluetoothStage1(0,false);
                 RefreshTach();
                 ActivElectrodStage1 = 0;
@@ -250,41 +337,7 @@ public class MainActivity extends Activity  {
 
                 StageMode = 2;
 
-                button6.setVisibility(View.VISIBLE);
-                button6.setVisibility(View.VISIBLE);
-                button9.setVisibility(View.VISIBLE);
-                button10.setVisibility(View.VISIBLE);
-                button12.setVisibility(View.VISIBLE);
-                button14.setVisibility(View.VISIBLE);
-                button16.setVisibility(View.VISIBLE);
-                button18.setVisibility(View.VISIBLE);
-                button20.setVisibility(View.VISIBLE);
-                button22.setVisibility(View.VISIBLE);
-                button24.setVisibility(View.VISIBLE);
-                button27.setVisibility(View.VISIBLE);
-                button29.setVisibility(View.VISIBLE);
-                button31.setVisibility(View.VISIBLE);
-                button32.setVisibility(View.VISIBLE);
 
-                button4.setVisibility(View.VISIBLE);
-                button7.setVisibility(View.VISIBLE);
-                button34.setVisibility(View.VISIBLE);
-                button35.setVisibility(View.VISIBLE);
-                button36.setVisibility(View.VISIBLE);
-                button37.setVisibility(View.VISIBLE);
-
-                button42.setVisibility(View.VISIBLE);
-                button43.setVisibility(View.VISIBLE);
-                button44.setVisibility(View.VISIBLE);
-                button45.setVisibility(View.VISIBLE);
-                button50.setVisibility(View.VISIBLE);
-                button51.setVisibility(View.VISIBLE);
-                button52.setVisibility(View.VISIBLE);
-                button53.setVisibility(View.VISIBLE);
-                button54.setVisibility(View.VISIBLE);
-                button55.setVisibility(View.VISIBLE);
-                button56.setVisibility(View.VISIBLE);
-                button57.setVisibility(View.VISIBLE);
             }
         });
 
@@ -300,7 +353,6 @@ public class MainActivity extends Activity  {
 
 
                 SetVisibleRec(false);
-                CleanAlpha();
                 SendBluetoothStage1(0,false);
                 RefreshTach();
                 ActivElectrodStage1 = 0;
@@ -315,42 +367,6 @@ public class MainActivity extends Activity  {
                 StageMode = 3;
 
 
-
-                button6.setVisibility(View.INVISIBLE);
-                button6.setVisibility(View.INVISIBLE);
-                button9.setVisibility(View.INVISIBLE);
-                button10.setVisibility(View.INVISIBLE);
-                button12.setVisibility(View.INVISIBLE);
-                button14.setVisibility(View.INVISIBLE);
-                button16.setVisibility(View.INVISIBLE);
-                button18.setVisibility(View.INVISIBLE);
-                button20.setVisibility(View.INVISIBLE);
-                button22.setVisibility(View.INVISIBLE);
-                button24.setVisibility(View.INVISIBLE);
-                button27.setVisibility(View.INVISIBLE);
-                button29.setVisibility(View.INVISIBLE);
-                button31.setVisibility(View.INVISIBLE);
-                button32.setVisibility(View.INVISIBLE);
-
-                button4.setVisibility(View.INVISIBLE);
-                button7.setVisibility(View.INVISIBLE);
-                button34.setVisibility(View.INVISIBLE);
-                button35.setVisibility(View.INVISIBLE);
-                button36.setVisibility(View.INVISIBLE);
-                button37.setVisibility(View.INVISIBLE);
-
-                button42.setVisibility(View.INVISIBLE);
-                button43.setVisibility(View.INVISIBLE);
-                button44.setVisibility(View.INVISIBLE);
-                button45.setVisibility(View.INVISIBLE);
-                button50.setVisibility(View.INVISIBLE);
-                button51.setVisibility(View.INVISIBLE);
-                button52.setVisibility(View.INVISIBLE);
-                button53.setVisibility(View.INVISIBLE);
-                button54.setVisibility(View.INVISIBLE);
-                button55.setVisibility(View.INVISIBLE);
-                button56.setVisibility(View.INVISIBLE);
-                button57.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -423,7 +439,7 @@ public class MainActivity extends Activity  {
         });
 
 
-        ///-----------Body-------
+      /*  ///-----------Body-------
         button18.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch (View v, MotionEvent event){
@@ -1231,8 +1247,8 @@ public class MainActivity extends Activity  {
                 return true;
             }
         });
-
-        buttonS1.setOnClickListener(new View.OnClickListener() {
+*/
+/*        buttonS1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 S = 0;
@@ -1299,25 +1315,8 @@ public class MainActivity extends Activity  {
                 SendBluetoothS(ActivElectrodStage1 , true);
 
             }
-        });
-        buttonTHot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SendBluetoothTemp('H');
-
-            }
-        });
-        buttonTCold.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SendBluetoothTemp('C');
-
-            }
-        });
-
-        //--------Слушатель 3-го режима-------------------
-
-            textViewStage3.setOnTouchListener(new View.OnTouchListener() {
+        });*/
+    textViewStage3.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
 
@@ -1416,88 +1415,15 @@ public class MainActivity extends Activity  {
         buttonFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                budy1.setVisibility(View.INVISIBLE);
-                button6.setVisibility(View.VISIBLE);
-                button9.setVisibility(View.VISIBLE);
-                button10.setVisibility(View.VISIBLE);
-                button12.setVisibility(View.VISIBLE);
-                button14.setVisibility(View.VISIBLE);
-                button16.setVisibility(View.VISIBLE);
-                button18.setVisibility(View.VISIBLE);
-                button20.setVisibility(View.VISIBLE);
-                button22.setVisibility(View.VISIBLE);
-                button24.setVisibility(View.VISIBLE);
-                button27.setVisibility(View.VISIBLE);
-                button29.setVisibility(View.VISIBLE);
-                button31.setVisibility(View.VISIBLE);
-                button32.setVisibility(View.VISIBLE);
-
-
-                budy2.setVisibility(View.VISIBLE);
-                button34.setVisibility(View.INVISIBLE);
-                button35.setVisibility(View.INVISIBLE);
-                button36.setVisibility(View.INVISIBLE);
-                button37.setVisibility(View.INVISIBLE);
-
-                button4.setVisibility(View.VISIBLE);
-                button7.setVisibility(View.INVISIBLE);
-                button57.setVisibility(View.INVISIBLE);
-                button42.setVisibility(View.INVISIBLE);
-                button43.setVisibility(View.INVISIBLE);
-                button44.setVisibility(View.INVISIBLE);
-                button45.setVisibility(View.INVISIBLE);
-                button50.setVisibility(View.VISIBLE);
-                button51.setVisibility(View.INVISIBLE);
-                button52.setVisibility(View.INVISIBLE);
-                button53.setVisibility(View.INVISIBLE);
-                button53.setVisibility(View.VISIBLE);
-                button54.setVisibility(View.VISIBLE);
-                button55.setVisibility(View.INVISIBLE);
-                button56.setVisibility(View.INVISIBLE);
-                button57.setVisibility(View.INVISIBLE);
+                VisibleBody1();
+                InvisibleBody2();
             }
         });
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                budy1.setVisibility(View.VISIBLE);
-                button6.setVisibility(View.INVISIBLE);
-                button6.setVisibility(View.INVISIBLE);
-                button9.setVisibility(View.INVISIBLE);
-                button10.setVisibility(View.INVISIBLE);
-                button12.setVisibility(View.INVISIBLE);
-                button14.setVisibility(View.INVISIBLE);
-                button16.setVisibility(View.INVISIBLE);
-                button18.setVisibility(View.INVISIBLE);
-                button20.setVisibility(View.INVISIBLE);
-                button22.setVisibility(View.INVISIBLE);
-                button24.setVisibility(View.INVISIBLE);
-                button27.setVisibility(View.INVISIBLE);
-                button29.setVisibility(View.INVISIBLE);
-                button31.setVisibility(View.INVISIBLE);
-                button32.setVisibility(View.INVISIBLE);
-
-
-                budy2.setVisibility(View.INVISIBLE);
-                button4.setVisibility(View.INVISIBLE);
-                button7.setVisibility(View.VISIBLE);
-                button34.setVisibility(View.VISIBLE);
-                button35.setVisibility(View.VISIBLE);
-                button36.setVisibility(View.VISIBLE);
-                button37.setVisibility(View.VISIBLE);
-
-                button42.setVisibility(View.VISIBLE);
-                button43.setVisibility(View.VISIBLE);
-                button44.setVisibility(View.VISIBLE);
-                button45.setVisibility(View.VISIBLE);
-                button50.setVisibility(View.INVISIBLE);
-                button51.setVisibility(View.VISIBLE);
-                button52.setVisibility(View.VISIBLE);
-                button53.setVisibility(View.INVISIBLE);
-                button54.setVisibility(View.INVISIBLE);
-                button55.setVisibility(View.VISIBLE);
-                button56.setVisibility(View.VISIBLE);
-                button57.setVisibility(View.VISIBLE);
+                VisibleBody2();
+                InvisibleBody1();
             }
         });
     }
@@ -1505,54 +1431,96 @@ public class MainActivity extends Activity  {
         SendBluetoothStage1(0,false);
     }
 
-    private void CleanAlpha(){
-        Thread CleanAlphaThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                double alpha = AlphasOff;
-                button4.setAlpha((float)(alpha));
-                button6.setAlpha((float)(alpha));
-                button7.setAlpha((float)(alpha));
-                button9.setAlpha((float)(alpha));
-                button10.setAlpha((float)(alpha));
-                button12.setAlpha((float)(alpha));
-                button14.setAlpha((float)(alpha));
-                button16.setAlpha((float)(alpha));
-                button18.setAlpha((float)(alpha));
-                button20.setAlpha((float)(alpha));
-                button22.setAlpha((float)(alpha));
-                button24.setAlpha((float)(alpha));
-                button27.setAlpha((float)(alpha));
-                button29.setAlpha((float)(alpha));
-                button31.setAlpha((float)(alpha));
-                button32.setAlpha((float)(alpha));
-
-                button34.setAlpha((float)(alpha));
-                button35.setAlpha((float)(alpha));
-                button36.setAlpha((float)(alpha));
-                button37.setAlpha((float)(alpha));
-                button42.setAlpha((float)(alpha));
-                button43.setAlpha((float)(alpha));
-                button44.setAlpha((float)(alpha));
-                button45.setAlpha((float)(alpha));
-                button50.setAlpha((float)(alpha));
-                button51.setAlpha((float)(alpha));
-                button52.setAlpha((float)(alpha));
-                button53.setAlpha((float)(alpha));
-                button54.setAlpha((float)(alpha));
-                button55.setAlpha((float)(alpha));
-                button56.setAlpha((float)(alpha));
-                button57.setAlpha((float)(alpha));
-            }
-        });
-        CleanAlphaThread.start();
-        try{
-            CleanAlphaThread.join();
-        }catch(Exception e){
-            Log.e("Exception" , e+"");
-        }
+    private void VisibleBody1(){
+        main_body1.setVisibility(View.VISIBLE);
+        image101.setVisibility(View.INVISIBLE);
+        image102.setVisibility(View.INVISIBLE);
+        image103.setVisibility(View.INVISIBLE);
+        image104.setVisibility(View.INVISIBLE);
+        image105.setVisibility(View.INVISIBLE);
+        image106.setVisibility(View.INVISIBLE);
+        image107.setVisibility(View.INVISIBLE);
+        image108.setVisibility(View.INVISIBLE);
+        image109.setVisibility(View.INVISIBLE);
+        image110.setVisibility(View.INVISIBLE);
+        image111.setVisibility(View.INVISIBLE);
+        image112.setVisibility(View.INVISIBLE);
+        image113.setVisibility(View.INVISIBLE);
+        image114.setVisibility(View.INVISIBLE);
+        image115.setVisibility(View.INVISIBLE);
+        image116.setVisibility(View.INVISIBLE);
+        image117.setVisibility(View.INVISIBLE);
+        image118.setVisibility(View.INVISIBLE);
+        image119.setVisibility(View.INVISIBLE);
+        image120.setVisibility(View.INVISIBLE);
 
     }
+    private void InvisibleBody1(){
+        main_body1.setVisibility(View.INVISIBLE);
+        image101.setVisibility(View.INVISIBLE);
+        image102.setVisibility(View.INVISIBLE);
+        image103.setVisibility(View.INVISIBLE);
+        image104.setVisibility(View.INVISIBLE);
+        image105.setVisibility(View.INVISIBLE);
+        image106.setVisibility(View.INVISIBLE);
+        image107.setVisibility(View.INVISIBLE);
+        image108.setVisibility(View.INVISIBLE);
+        image109.setVisibility(View.INVISIBLE);
+        image110.setVisibility(View.INVISIBLE);
+        image111.setVisibility(View.INVISIBLE);
+        image112.setVisibility(View.INVISIBLE);
+        image113.setVisibility(View.INVISIBLE);
+        image114.setVisibility(View.INVISIBLE);
+        image115.setVisibility(View.INVISIBLE);
+        image116.setVisibility(View.INVISIBLE);
+        image117.setVisibility(View.INVISIBLE);
+        image118.setVisibility(View.INVISIBLE);
+        image119.setVisibility(View.INVISIBLE);
+        image120.setVisibility(View.INVISIBLE);
+
+    }
+    private void VisibleBody2(){
+
+        main_body2.setVisibility(View.VISIBLE);
+        image221.setVisibility(View.INVISIBLE);
+        image222.setVisibility(View.INVISIBLE);
+        image223.setVisibility(View.INVISIBLE);
+        image224.setVisibility(View.INVISIBLE);
+        image225.setVisibility(View.INVISIBLE);
+        image226.setVisibility(View.INVISIBLE);
+        image227.setVisibility(View.INVISIBLE);
+        image228.setVisibility(View.INVISIBLE);
+        image229.setVisibility(View.INVISIBLE);
+        image230.setVisibility(View.INVISIBLE);
+        image231.setVisibility(View.INVISIBLE);
+        image232.setVisibility(View.INVISIBLE);
+        image233.setVisibility(View.INVISIBLE);
+        image234.setVisibility(View.INVISIBLE);
+        image235.setVisibility(View.INVISIBLE);
+        image236.setVisibility(View.INVISIBLE);
+    }
+    private void InvisibleBody2(){
+
+        main_body2.setVisibility(View.INVISIBLE);
+        image221.setVisibility(View.INVISIBLE);
+        image222.setVisibility(View.INVISIBLE);
+        image223.setVisibility(View.INVISIBLE);
+        image224.setVisibility(View.INVISIBLE);
+        image225.setVisibility(View.INVISIBLE);
+        image226.setVisibility(View.INVISIBLE);
+        image227.setVisibility(View.INVISIBLE);
+        image228.setVisibility(View.INVISIBLE);
+        image229.setVisibility(View.INVISIBLE);
+        image230.setVisibility(View.INVISIBLE);
+        image231.setVisibility(View.INVISIBLE);
+        image232.setVisibility(View.INVISIBLE);
+        image233.setVisibility(View.INVISIBLE);
+        image234.setVisibility(View.INVISIBLE);
+        image235.setVisibility(View.INVISIBLE);
+        image236.setVisibility(View.INVISIBLE);
+    }
+
+
     private void SetVisibleRec(boolean visible){
         if(visible) {
             buttonUp.setVisibility(View.VISIBLE);
@@ -2821,13 +2789,7 @@ public class MainActivity extends Activity  {
 
     private void FindElements(){
 
-        buttonS1 = (Button) findViewById(R.id.buttonS1);
-        buttonS2 = (Button) findViewById(R.id.buttonS2);
-        buttonS3 = (Button) findViewById(R.id.buttonS3);
-        buttonS4 = (Button) findViewById(R.id.buttonS4);
-        buttonS5 = (Button) findViewById(R.id.buttonS5);
-        buttonTHot = (Button) findViewById(R.id.buttonTHot) ;
-        buttonTCold = (Button) findViewById(R.id.buttonTCold) ;
+
 
         buttonOff = (Button) findViewById(R.id.buttonOff);
         buttonUp = (Button) findViewById(R.id.buttonUp);
@@ -2842,8 +2804,7 @@ public class MainActivity extends Activity  {
         myimage = (ImageView) findViewById(R.id.myimage);
         imgFooter = (LinearLayout.LayoutParams) myimage.getLayoutParams();
         LinearLayout1 = (LinearLayout) findViewById(R.id.topleft);
-        budy1 = (ImageView)findViewById(R.id.budy1);
-        budy2 = (ImageView)findViewById(R.id.budy2);
+
 
         buttonFront = (Button)findViewById(R.id.button5);
         buttonBack = (Button) findViewById(R.id.button58);
@@ -2852,44 +2813,7 @@ public class MainActivity extends Activity  {
         buttonStage2 = (Button) findViewById(R.id.button_stage2);
         buttonStage3 = (Button) findViewById(R.id.button_stage3);
 
-        //-----Body-------
-        button18 = (Button)findViewById(R.id.button18);
-        button6 = (Button)findViewById(R.id.button6);
-        button20 = (Button)findViewById(R.id.button20);
-        button9 = (Button)findViewById(R.id.button9);
 
-        button10 = (Button)findViewById(R.id.button10);
-        button12 = (Button)findViewById(R.id.button12);
-        button14 = (Button)findViewById(R.id.button14);
-        button16 = (Button)findViewById(R.id.button16);
-
-        //-------Руки-----
-        button22 = (Button)findViewById(R.id.button22);
-        button7 = (Button)findViewById(R.id.button7);
-        button24 = (Button)findViewById(R.id.button24);
-        button27 = (Button)findViewById(R.id.button27);
-        button29 = (Button)findViewById(R.id.button29);
-        button31 = (Button)findViewById(R.id.button31);
-        button32 = (Button)findViewById(R.id.button32);
-        button4 = (Button)findViewById(R.id.button4);
-
-        //----------Cпина--------
-        button34 = (Button)findViewById(R.id.button34);
-        button35 = (Button)findViewById(R.id.button35);
-        button36 = (Button)findViewById(R.id.button36);
-        button37 = (Button)findViewById(R.id.button37);
-        button42 = (Button)findViewById(R.id.button42);
-        button43 = (Button)findViewById(R.id.button43);
-        button44 = (Button)findViewById(R.id.button44);
-        button45 = (Button)findViewById(R.id.button45);
-        button50 = (Button)findViewById(R.id.button50);
-        button51 = (Button)findViewById(R.id.button51);
-        button52 = (Button)findViewById(R.id.button52);
-        button53 = (Button)findViewById(R.id.button53);
-        button54 = (Button)findViewById(R.id.button54);
-        button55 = (Button)findViewById(R.id.button55);
-        button56 = (Button)findViewById(R.id.button56);
-        button57 = (Button)findViewById(R.id.button57);
     }
 
 }
