@@ -56,23 +56,17 @@ public class MainActivity extends Activity  {
     //----Управление-Режимом------
     Button buttonStage1,buttonStage2,buttonStage3;
 
-    //-----Управление S ------------------
-    Button buttonS1,buttonS2,buttonS3,buttonS4,buttonS5;
-
-    //-----Управление Teмператур ------------------
-    Button buttonTHot, buttonTCold;
 
 
-    RelativeLayout.LayoutParams  Footer;
+    RelativeLayout  Footer;
+    RelativeLayout layoutBody1,layoutBody2;
 
     ImageView myimage;
-    ImageView budy1;
-    ImageView budy2;
     LinearLayout.LayoutParams imgFooter;
     LinearLayout LinearLayout1;
 
     TextView textView2;
-
+    TextView touchBody1,touchBody2;
 
     //Сокет, с помощью которого мы будем отправлять данные на Arduino
     BluetoothSocket clientSocket;
@@ -83,10 +77,47 @@ public class MainActivity extends Activity  {
     int S = 0;
     int StageMode = 1;
     int ActivElectrodStage1;
-
+    int ActivElectrodStage2;
     float x;
     float y;
     int ActivrButtonStage3 = 0;
+
+    short im101 = 1;
+    short im102 = 2;
+    short im103 = 3;
+    short im104 = 4;
+    short im105 = 5;
+    short im106 = 6;
+    short im107 = 7;
+    short im108 = 8;
+    short im109 = 9;
+    short im110 = 10;
+    short im111 = 11;
+    short im112 = 12;
+    short im113 = 13;
+    short im114 = 14;
+    short im115 = 15;
+    short im116 = 16;
+    short im117 = 17;
+    short im118 = 18;
+    short im119 = 19;
+    short im120 = 20;
+    short im221 = 21;
+    short im222 = 22;
+    short im223 = 23;
+    short im224 = 24;
+    short im225 = 25;
+    short im226 = 26;
+    short im227 = 27;
+    short im228 = 28;
+    short im229 = 29;
+    short im230 = 30;
+    short im231 = 31;
+    short im232 = 32;
+    short im233 = 33;
+    short im234 = 34;
+    short im235 = 35;
+    short im236 = 36;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +129,7 @@ public class MainActivity extends Activity  {
         InitializationBluetooth();
 
         InitializationElements();
+
 
     }
     private void InitializationElements(){
@@ -205,6 +237,9 @@ public class MainActivity extends Activity  {
         image119.setVisibility(View.INVISIBLE);
         image120.setVisibility(View.INVISIBLE);
 
+
+        touchBody2.setVisibility(View.INVISIBLE);
+
         main_body2.setVisibility(View.INVISIBLE);
         image221.setVisibility(View.INVISIBLE);
         image222.setVisibility(View.INVISIBLE);
@@ -231,7 +266,8 @@ public class MainActivity extends Activity  {
         startActivityForResult(new Intent(enableBT), 0);
         BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
         try{
-            BluetoothDevice device = bluetooth.getRemoteDevice("20:16:05:19:17:78");
+            //20:16:05:19:17:78
+            BluetoothDevice device = bluetooth.getRemoteDevice("98:D3:32:20:96:C3");
             //Инициируем соединение с устройством
             Method m = device.getClass().getMethod(
                     "createRfcommSocket", new Class[] {int.class});
@@ -271,6 +307,7 @@ public class MainActivity extends Activity  {
     }
 
     private void SetListenerElement(){
+
 
         buttonOff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1316,6 +1353,704 @@ public class MainActivity extends Activity  {
 
             }
         });*/
+        touchBody1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int X_event = (int) motionEvent.getX();
+                int Y_event = (int) motionEvent.getY();
+
+                int X = (int)((double)X_event/((double) touchBody1.getHeight())*100);
+                int Y = (int)((double)Y_event/((double) touchBody1.getHeight())*100);
+                touchBody1.setText("x:"+X+"y:"+Y);
+
+                if(StageMode == 1) {
+                    InvisibleBody1();
+                    touchBody1.setVisibility(View.VISIBLE);
+                    main_body1.setVisibility(View.VISIBLE);
+                }
+
+                if((X>(0+(100-Y)*0.18 ) && Y<100)&&
+                        ((X<(10+(100-Y)*0.3))&&Y>54)){
+                    touchBody1.setText("HERE101");
+                    image101.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im101;
+                    }else if(StageMode == 2){
+
+                        if(image101.getVisibility() == image101.INVISIBLE){
+                            SendBluetoothStage1((im101), false);
+                            ActivElectrodStage2 = im101;
+                        }else{
+                            SendBluetoothStage2(im101, true);
+                        }
+                    }
+
+
+                }else if((X>9 && Y <55) &&
+                        (X<26 && Y>30)){
+                    touchBody1.setText("HERE102");
+                    image102.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im102;
+                    }else if(StageMode == 2) {
+                        if(image102.getVisibility()== image102.VISIBLE){
+                            SendBluetoothStage1((im102), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im102, true);
+                        }
+                    }
+
+                }else if((X>10 && Y<31)&&
+                        X<28 && Y>5){
+                    touchBody1.setText("HERE103");
+                    image103.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im103;
+                    }else if(StageMode == 2) {
+                        if(image103.getVisibility()== image103.VISIBLE){
+                            SendBluetoothStage1((im103), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im103, true);
+                        }
+                    }
+
+
+                }else if((X>75 && Y<28)&&
+                        (X<92 && Y>5)){
+                    touchBody1.setText("HERE104");
+                    image104.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im104;
+                    }else if(StageMode == 2) {
+                        if(image104.getVisibility()== image104.VISIBLE){
+                            SendBluetoothStage1((im104), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im104, true);
+                        }
+                    }
+
+
+                }else if((X>75 && Y<55)&&
+                        (X<95 && Y>27)){
+                    touchBody1.setText("HERE105");
+                    image105.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im105;
+                    }else if(StageMode == 2) {
+                        if(image105.getVisibility()== image105.VISIBLE){
+                            SendBluetoothStage1((im105), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im105, true);
+                        }
+                    }
+
+
+                }else if((X>(85-(100-Y)*0.18)&&Y<100)&&
+                        ((X<(100-(100-Y)*0.16))&&Y>54)){
+                    touchBody1.setText("HERE106");
+                    image106.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im106;
+                    }else if(StageMode == 2) {
+                        if(image106.getVisibility()== image106.VISIBLE){
+                            SendBluetoothStage1((im106), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im106, true);
+                        }
+                    }
+
+
+                }else if ((X>38 && Y<60)&&
+                        (X<56 && Y>35)){
+                    touchBody1.setText("HERE107");
+                    image107.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im107;
+                    }else if(StageMode == 2) {
+                        if(image107.getVisibility()== image107.VISIBLE){
+                            SendBluetoothStage1((im107), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im107, true);
+                        }
+                    }
+
+
+
+                }else if ((X>38 && Y<100)&&
+                        (X<56 && Y>59)){
+                    touchBody1.setText("HERE108");
+                    image108.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im108;
+                    }else if(StageMode == 2) {
+                        if(image108.getVisibility()== image108.VISIBLE){
+                            SendBluetoothStage1((im108), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im108, true);
+                        }
+                    }
+
+
+                }else if ((X>55 && Y<60)&&
+                        (X<69 && Y>35)){
+                    touchBody1.setText("HERE109");
+                    image109.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im109;
+                    }else if(StageMode == 2) {
+                        if(image109.getVisibility()== image109.VISIBLE){
+                            SendBluetoothStage1((im109), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im109, true);
+                        }
+                    }
+
+
+                }else if ((X>55 && Y<100)&&
+                        (X<68 && Y>59)){
+                    touchBody1.setText("HERE110");
+                    image110.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im110;
+                    }else if(StageMode == 2) {
+                        if(image110.getVisibility()== image110.VISIBLE){
+                            SendBluetoothStage1((im110), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im110, true);
+                        }
+                    }
+
+                }else if ((X>26 && Y<60)&&
+                        (X<39 && Y>35)){
+                    touchBody1.setText("HERE111");
+                    image111.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im111;
+                    }else if(StageMode == 2) {
+                        if(image111.getVisibility()== image111.VISIBLE){
+                            SendBluetoothStage1((im111), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im111, true);
+                        }
+                    }
+
+                }else if ((X>26 && Y<84)&&
+                        (X<39 && Y>59)){
+                    touchBody1.setText("HERE112");
+                    image112.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im112;
+                    }else if(StageMode == 2) {
+                        if(image112.getVisibility()== image112.VISIBLE){
+                            SendBluetoothStage1((im112), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im112, true);
+                        }
+                    }
+
+                }else if ((X>67 && Y<60)&&
+                        (X<76 && Y>35)){
+                    touchBody1.setText("HERE113");
+                    image113.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im113;
+                    }else if(StageMode == 2) {
+                        if(image113.getVisibility()== image113.VISIBLE){
+                            SendBluetoothStage1((im113), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im113, true);
+                        }
+                    }
+
+                }else if ((X>67 && Y<84)&&
+                        (X<76 && Y>59)){
+                    touchBody1.setText("HERE114");
+                    image114.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im114;
+                    }else if(StageMode == 2) {
+                        if(image114.getVisibility()== image114.VISIBLE){
+                            SendBluetoothStage1((im114), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im114, true);
+                        }
+                    }
+
+                }else if ((X>24 && Y<100)&&
+                        (X<40 && Y>83)){
+                    touchBody1.setText("HERE115");
+                    image115.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im115;
+                    }else if(StageMode == 2) {
+                        if(image115.getVisibility()== image115.VISIBLE){
+                            SendBluetoothStage1((im115), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im115, true);
+                        }
+                    }
+
+                }else if ((X>67 && Y<100)&&
+                        (X<77 && Y>83)){
+                    touchBody1.setText("HERE116");
+                    image116.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im116;
+                    }else if(StageMode == 2) {
+                        if(image116.getVisibility()== image116.VISIBLE){
+                            SendBluetoothStage1((im116), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im116, true);
+                        }
+                    }
+
+                }else if ((X>27 && Y<36)&&
+                        (X<55 && Y>9)){
+                    touchBody1.setText("HERE117");
+                    image117.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im117;
+                    }else if(StageMode == 2) {
+                        if(image117.getVisibility()== image117.VISIBLE){
+                            SendBluetoothStage1((im117), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im117, true);
+                        }
+                    }
+
+                }else if ((X>54 && Y<36)&&
+                        (X<76 && Y>9)){
+                    touchBody1.setText("HERE118");
+                    image118.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im118;
+                    }else if(StageMode == 2) {
+                        if(image118.getVisibility()== image118.VISIBLE){
+                            SendBluetoothStage1((im118), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im118, true);
+                        }
+                    }
+
+                }else if ((X>30 && Y<10)&&
+                        (X<55 && Y>0)){
+                    touchBody1.setText("HERE119");
+                    image119.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im119;
+                    }else if(StageMode == 2) {
+                        if(image119.getVisibility()== image119.VISIBLE){
+                            SendBluetoothStage1((im119), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im119, true);
+                        }
+                    }
+
+                }else if ((X>54 && Y<10)&&
+                        (X<75 && Y>0)){
+                    touchBody1.setText("HERE120");
+                    image120.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im120;
+                    }else if(StageMode == 2) {
+                        if(image120.getVisibility()== image120.VISIBLE){
+                            SendBluetoothStage1((im120), false);
+                            touchBody1.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im120, true);
+                        }
+                    }
+
+                }
+                return true;
+            }
+        });
+
+        touchBody2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                int X_event = (int) motionEvent.getX();
+                int Y_event = (int) motionEvent.getY();
+
+                int X = (int)((double)X_event/((double) touchBody1.getHeight())*100);
+                int Y = (int)((double)Y_event/((double) touchBody1.getHeight())*100);
+                touchBody2.setText("x:"+X+"y:"+Y);
+
+                if(StageMode==1) {
+                    InvisibleBody2();
+                    touchBody2.setVisibility(View.VISIBLE);
+                    main_body2.setVisibility(View.VISIBLE);
+                }
+
+                if((X>(0+(100-Y)*0.1 ) && Y<100)&&
+                        ((X<(15+(100-Y)*0.3))&&Y>54)){
+                    touchBody2.setText("HERE221");
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im221;
+                        image221.setVisibility(View.VISIBLE);
+
+                    }else if(StageMode == 2) {
+                        if(image221.getVisibility()== image221.INVISIBLE){
+                            SendBluetoothStage1((im221), false);
+                            touchBody2.setText("TOUCH");
+                            image221.setVisibility(View.VISIBLE);
+
+                        }else{
+                            image221.setVisibility(View.INVISIBLE);
+                            SendBluetoothStage2(im221, true);
+                        }
+                    }
+
+                }else if((X>8 && Y <55) &&
+                        (X<24 && Y>23)) {
+                    touchBody2.setText("HERE222");
+                    image222.setVisibility(View.VISIBLE);
+
+
+                        if(StageMode == 1) {
+                            RestartValue();
+                            ActivElectrodStage1 = im222;
+                        }else if(StageMode == 2) {
+                            if(image222.getVisibility()== image222.VISIBLE){
+                                SendBluetoothStage1((im222), false);
+                                touchBody2.setText("TOUCH");
+                            }else{
+                                SendBluetoothStage2(im222, true);
+                            }
+                        }
+
+
+
+                    }else if((X>8 && Y <34) &&
+                        (X<36 && Y>3)) {
+                    touchBody2.setText("HERE223");
+                    image223.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im223;
+                    }else if(StageMode == 2) {
+                        if(image223.getVisibility()== image223.VISIBLE){
+                            SendBluetoothStage1((im223), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im223, true);
+                        }
+                    }
+
+
+
+                }else if((X>25 && Y <16) &&
+                        (X<50 && Y>0)) {
+                    touchBody2.setText("HERE224");
+                    image224.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im224;
+                    }else if(StageMode == 2) {
+                        if(image224.getVisibility()== image224.VISIBLE){
+                            SendBluetoothStage1((im224), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im224, true);
+                        }
+                    }
+
+
+                }else if((X>35 && Y <45) &&
+                        (X<50 && Y>15)) {
+                    touchBody2.setText("HERE235");
+                    image235.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im235;
+                    }else if(StageMode == 2) {
+                        if(image235.getVisibility()== image235.VISIBLE){
+                            SendBluetoothStage1((im235), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im235, true);
+                        }
+                    }
+
+
+                }else if((X>49 && Y <45) &&
+                        (X<65 && Y>15)) {
+                    touchBody2.setText("HERE236");
+                    image236.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im236;
+                    }else if(StageMode == 2) {
+                        if(image236.getVisibility()== image236.VISIBLE){
+                            SendBluetoothStage1((im236), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im236, true);
+                        }
+                    }
+
+
+                }else if((X>(90-(100-Y)*0.3)&&Y<100)&&
+                        ((X<(100-(100-Y)*0.11))&&Y>54)){
+                    touchBody2.setText("HERE228");
+                    image228.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im228;
+                    }else if(StageMode == 2) {
+                        if(image228.getVisibility()== image228.VISIBLE){
+                            SendBluetoothStage1((im228), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im228, true);
+                        }
+                    }
+
+
+                }else if((X>73 && Y <55) &&
+                        (X<91 && Y>20)) {
+                    touchBody2.setText("HERE227");
+                    image227.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im227;
+                    }else if(StageMode == 2) {
+                        if(image227.getVisibility()== image227.VISIBLE){
+                            SendBluetoothStage1((im227), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im227, true);
+                        }
+                    }
+
+
+                }else if((X>64 && Y <33) &&
+                        (X<90 && Y>4)) {
+                    touchBody2.setText("HERE226");
+                    image226.setVisibility(View.VISIBLE);
+
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im226;
+                    }else if(StageMode == 2) {
+                        if(image226.getVisibility()== image226.VISIBLE){
+                            SendBluetoothStage1((im226), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im226, true);
+                        }
+                    }
+
+
+                }else if((X>49 && Y <16) &&
+                        (X<70 && Y>0)) {
+                    touchBody2.setText("HERE225");
+                    image225.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im225;
+                    }else if(StageMode == 2) {
+                        if(image225.getVisibility()== image225.VISIBLE){
+                            SendBluetoothStage1((im225), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im225, true);
+                        }
+                    }
+
+
+                }else if((X>23 && Y <55) &&
+                        (X<48 && Y>34)) {
+                    touchBody2.setText("HERE229");
+                    image229.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im229;
+                    }else if(StageMode == 2) {
+                        if(image229.getVisibility()== image229.VISIBLE){
+                            SendBluetoothStage1((im229), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im229, true);
+                        }
+                    }
+
+
+                }else if((X>50 && Y <55) &&
+                        (X<75 && Y>32)) {
+                    touchBody2.setText("HERE230");
+                    image230.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im230;
+                    }else if(StageMode == 2) {
+                        if(image230.getVisibility()== image230.VISIBLE){
+                            SendBluetoothStage1((im230), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im230, true);
+                        }
+                    }
+
+
+                }else if((X>25 && Y <82) &&
+                        (X<50 && Y>54)) {
+                    touchBody2.setText("HERE231");
+                    image231.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im231;
+                    }else if(StageMode == 2) {
+                        if(image231.getVisibility()== image231.VISIBLE){
+                            SendBluetoothStage1((im231), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im231, true);
+                        }
+                    }
+
+
+                }else if((X>49 && Y <82) &&
+                        (X<72 && Y>54)) {
+                    touchBody2.setText("HERE232");
+                    image232.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im232;
+                    }else if(StageMode == 2) {
+                        if(image232.getVisibility()== image232.VISIBLE){
+                            SendBluetoothStage1((im232), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im232, true);
+                        }
+                    }
+
+
+                }else if((X>24 && Y <100) &&
+                        (X<50 && Y>81)) {
+                    touchBody2.setText("HERE233");
+                    image233.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im233;
+                    }else if(StageMode == 2) {
+                        if(image233.getVisibility()== image233.VISIBLE){
+                            SendBluetoothStage1((im233), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im233, true);
+                        }
+                    }
+
+
+                }else if((X>49 && Y <100) &&
+                        (X<75 && Y>81)) {
+                    touchBody2.setText("HERE234");
+                    image234.setVisibility(View.VISIBLE);
+
+                    if(StageMode == 1) {
+                        RestartValue();
+                        ActivElectrodStage1 = im234;
+                    }else if(StageMode == 2) {
+                        if(image234.getVisibility()== image234.VISIBLE){
+                            SendBluetoothStage1((im234), false);
+                            touchBody2.setText("TOUCH");
+                        }else{
+                            SendBluetoothStage2(im234, true);
+                        }
+                    }
+
+
+                }
+
+                return true;
+            }
+        });
+
+
+
     textViewStage3.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -1453,6 +2188,7 @@ public class MainActivity extends Activity  {
         image118.setVisibility(View.INVISIBLE);
         image119.setVisibility(View.INVISIBLE);
         image120.setVisibility(View.INVISIBLE);
+        touchBody1.setVisibility(View.VISIBLE);
 
     }
     private void InvisibleBody1(){
@@ -1477,6 +2213,7 @@ public class MainActivity extends Activity  {
         image118.setVisibility(View.INVISIBLE);
         image119.setVisibility(View.INVISIBLE);
         image120.setVisibility(View.INVISIBLE);
+        touchBody1.setVisibility(View.INVISIBLE);
 
     }
     private void VisibleBody2(){
@@ -1498,6 +2235,7 @@ public class MainActivity extends Activity  {
         image234.setVisibility(View.INVISIBLE);
         image235.setVisibility(View.INVISIBLE);
         image236.setVisibility(View.INVISIBLE);
+        touchBody2.setVisibility(View.VISIBLE);
     }
     private void InvisibleBody2(){
 
@@ -1518,6 +2256,7 @@ public class MainActivity extends Activity  {
         image234.setVisibility(View.INVISIBLE);
         image235.setVisibility(View.INVISIBLE);
         image236.setVisibility(View.INVISIBLE);
+        touchBody2.setVisibility(View.INVISIBLE);
     }
 
 
@@ -1548,7 +2287,12 @@ public class MainActivity extends Activity  {
         }
     }
     private void ShiftElementsLeft(){
-        budy2.setVisibility(View.INVISIBLE);
+        VisibleBody1();
+        InvisibleBody2();
+        layoutBody1.setLeft(50);
+
+
+       /* budy2.setVisibility(View.INVISIBLE);
         Footer = (RelativeLayout.LayoutParams) budy2.getLayoutParams();
         int budy2L = Footer.leftMargin;
         int budy2T = Footer.topMargin;
@@ -1736,12 +2480,15 @@ public class MainActivity extends Activity  {
         int button6B = Footer.bottomMargin;
         button6L -= 630;
         Footer.setMargins(button6L,button6T,button6R,button6B);
-        button6.setLayoutParams(Footer);
+        button6.setLayoutParams(Footer);*/
     }
     private void ShiftElementsRight(){
 
-        budy2.setVisibility(View.VISIBLE);
-        Footer = (RelativeLayout.LayoutParams) budy2.getLayoutParams();
+        VisibleBody1();
+        VisibleBody2();
+        layoutBody2.setRight(500);
+      /*  main_body2.setVisibility(View.VISIBLE);*/
+/*        Footer = (RelativeLayout.LayoutParams) budy2.getLayoutParams();
         int budy2L = Footer.leftMargin;
         int budy2T = Footer.topMargin;
         int budy2R = Footer.rightMargin;
@@ -1928,10 +2675,10 @@ public class MainActivity extends Activity  {
         int button6B = Footer.bottomMargin;
         button6L += 630;
         Footer.setMargins(button6L,button6T,button6R,button6B);
-        button6.setLayoutParams(Footer);
+        button6.setLayoutParams(Footer);*/
 
-        budy1.setVisibility(View.VISIBLE);
-        button7.setVisibility(View.VISIBLE);
+        /*main_body1.setVisibility(View.VISIBLE);*/
+/*        button7.setVisibility(View.VISIBLE);
         button34.setVisibility(View.VISIBLE);
         button35.setVisibility(View.VISIBLE);
         button36.setVisibility(View.VISIBLE);
@@ -1944,7 +2691,7 @@ public class MainActivity extends Activity  {
         button52.setVisibility(View.VISIBLE);
         button55.setVisibility(View.VISIBLE);
         button56.setVisibility(View.VISIBLE);
-        button57.setVisibility(View.VISIBLE);
+        button57.setVisibility(View.VISIBLE);*/
     }
     private void ListenerButtonStage3(int X, int Y){
         if((X>button42.getLeft() - ((button42.getLeft() - (button43.getLeft()+button43.getWidth()))/2)) &&
@@ -2789,7 +3536,8 @@ public class MainActivity extends Activity  {
 
     private void FindElements(){
 
-
+        touchBody1 = (TextView)findViewById(R.id.touchBody1);
+        touchBody2 = (TextView)findViewById(R.id.touchBody2);
 
         buttonOff = (Button) findViewById(R.id.buttonOff);
         buttonUp = (Button) findViewById(R.id.buttonUp);
@@ -2805,6 +3553,8 @@ public class MainActivity extends Activity  {
         imgFooter = (LinearLayout.LayoutParams) myimage.getLayoutParams();
         LinearLayout1 = (LinearLayout) findViewById(R.id.topleft);
 
+        layoutBody1 = (RelativeLayout) findViewById(R.id.relativeLayout);
+        layoutBody2 = (RelativeLayout) findViewById(R.id.relativeLayout2);
 
         buttonFront = (Button)findViewById(R.id.button5);
         buttonBack = (Button) findViewById(R.id.button58);
