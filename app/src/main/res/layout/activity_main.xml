@@ -659,8 +659,9 @@
         android:background="@drawable/buttop"
         android:id="@+id/buttonUp"
         tools:ignore="HardcodedText"
-        android:layout_marginLeft="850px"
-        android:layout_marginTop="44px" />
+        android:layout_alignTop="@+id/relativeLayout2"
+        android:layout_alignLeft="@+id/buttonDown"
+        android:layout_alignStart="@+id/buttonDown" />
 
     <Button
         android:text="3"
