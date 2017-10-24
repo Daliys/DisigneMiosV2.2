@@ -10,7 +10,7 @@
     android:paddingRight="0px"
     android:paddingTop="0px"
     android:background="@drawable/background"
-    tools:context="com.example.daliys.mios.MainActivity"
+    tools:context="com.example.daliys.miosd.MainActivity"
     android:layout_width="match_parent">
 
 

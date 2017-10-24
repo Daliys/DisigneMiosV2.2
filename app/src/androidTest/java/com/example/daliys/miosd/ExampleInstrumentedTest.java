@@ -1,4 +1,4 @@
-package com.example.daliys.mios;
+package com.example.daliys.miosd;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

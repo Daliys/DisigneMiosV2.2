@@ -1,4 +1,4 @@
-package com.example.daliys.mios;
+package com.example.daliys.miosd;
 
 import org.junit.Test;
 
